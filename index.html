@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexandros Salvatore Moysi – CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a1a1c;
+    --panel: #10262a;
+    --ink: #e3f0ee;
+    --muted: #8ea9a7;
+    --line: #21403f;
+    --accent: #4fd1c5;
+    --on-accent: #062023;
+    --ribbon-h: 3.5rem;
+    --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 4rem;
+  }
+
+  /* Left column */
+  .side { position: sticky; top: calc(var(--ribbon-h) + 2rem); align-self: start; }
+  .name {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.4vw, 3.1rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 1rem;
+  }
+  .greek { font-size: 1.05rem; color: var(--muted); margin: -0.5rem 0 1rem; }
+  .role { font-size: 1.25rem; color: var(--muted); margin: 0 0 2rem; }
+  .contact { list-style: none; margin: 0 0 2rem; padding: 0; font-size: 1rem; }
+  .contact li { padding: 0.5rem 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+  .contact li:last-child { border-bottom: 1px solid var(--line); }
+  .contact span { display: block; font-family: var(--head); font-size: 0.85rem; color: var(--muted); }
+  .download {
+    display: inline-block;
+    font-family: var(--head);
+    font-weight: 500;
+    font-size: 1rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  /* Right column */
+  section { margin-bottom: 3.25rem; }
+  h2 {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+  .profile p { font-size: 1.35rem; line-height: 1.5; margin: 0; max-width: 34em; }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .entry time { font-family: var(--head); font-size: 0.95rem; color: var(--muted); padding-top: 0.2rem; }
+  .entry h3 { font-family: var(--head); font-size: 1.15rem; font-weight: 700; margin: 0; }
+  .entry .org { color: var(--muted); margin: 0 0 0.5rem; }
+  .entry ul { margin: 0; padding-left: 1.1rem; }
+  .entry li { margin-bottom: 0.25rem; max-width: 36em; }
+
+  .skills { display: grid; grid-template-columns: 9rem 1fr; gap: 0.5rem 1.5rem; }
+  .skills dt { font-family: var(--head); font-size: 0.95rem; color: var(--muted); padding-top: 0.2rem; }
+  .skills dd { margin: 0 0 0.75rem; }
+
+  /* Ribbons */
+  .ribbon {
+    position: sticky; top: 0; z-index: 10;
+    height: var(--ribbon-h);
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+  }
+  .ribbon-inner {
+    max-width: 1080px; height: 100%; margin: 0 auto; padding: 0 1.5rem;
+    display: flex; align-items: stretch; gap: 0.5rem;
+  }
+  .ribbon button {
+    display: flex; align-items: center;
+    background: none; border: 0; cursor: pointer;
+    padding: 0 1rem;
+    font-family: var(--head); font-weight: 500; font-size: 1rem;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+  .ribbon button:hover { color: var(--ink); }
+  .ribbon button[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .ribbon button:focus-visible { outline-offset: -3px; }
+
+  .subribbon {
+    position: sticky; top: var(--ribbon-h); z-index: 5;
+    display: flex; gap: 0.5rem;
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
+    background: var(--bg);
+    overflow-x: auto; white-space: nowrap;
+  }
+  .subribbon button {
+    font-family: var(--head); font-weight: 500; font-size: 0.95rem;
+    color: var(--ink); text-decoration: none;
+    background: transparent; cursor: pointer;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--line); border-radius: 999px;
+  }
+  .subribbon button:hover { border-color: var(--accent); }
+  .subribbon button[aria-current="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+  /* Projects */
+  .project { scroll-margin-top: calc(var(--ribbon-h) + 4.5rem); }
+  .project { padding: 1.5rem 0 2rem; border-top: 1px solid var(--line); }
+  .stage {
+    aspect-ratio: 16 / 9;
+    background: var(--panel);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .stage video, .stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ph {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--head); font-size: 1rem; color: var(--muted);
+    background: linear-gradient(135deg, hsl(var(--h) 45% 78%), hsl(calc(var(--h) + 40) 50% 66%));
+    color: #14213d;
+  }
+  .thumbs { display: flex; gap: 0.6rem; margin: 0.75rem 0 1.25rem; }
+  .thumbs button {
+    width: 5.5rem; aspect-ratio: 16 / 9;
+    border: 2px solid transparent; border-radius: 6px; padding: 0;
+    background-size: cover; background-position: center;
+    background-color: var(--panel);
+    color: var(--muted);
+    font-family: var(--head); font-size: 0.8rem;
+    cursor: pointer; overflow: hidden;
+    opacity: 0.7;
+  }
+  .thumbs button[aria-pressed="true"] { border-color: var(--accent); opacity: 1; }
+  .thumbs button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .project h3 { font-family: var(--head); font-size: 1.35rem; font-weight: 700; margin: 0 0 0.4rem; }
+  .project p { margin: 0 0 0.75rem; max-width: 36em; }
+  .project .tools { color: var(--muted); font-size: 1rem; }
+  .project .repo { font-family: var(--head); font-weight: 500; font-size: 1rem; }
+
+  .aside { color: var(--muted); font-size: 1rem; max-width: 34em; margin: -1.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+  .portfolio-print { display: none; }
+
+  .entry-link {
+    background: none; border: 0; padding: 0; cursor: pointer;
+    font-family: var(--body); font-size: 1.05rem;
+    color: var(--accent); text-underline-offset: 3px; text-decoration: underline;
+  }
+  .entry-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  .entry-link-print { display: none; }
+
+  footer { color: var(--muted); font-size: 0.95rem; }
+
+  @media (max-width: 860px) {
+    .page { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; }
+    .side { position: static; }
+  }
+  @media (max-width: 520px) {
+    .entry, .skills { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+  @media print {
+    :root { --bg: #fff; --panel: #fff; --ink: #000; --muted: #444; --line: #ccc; --accent: #0a6b66; }
+    body { background: #fff; color: #000; }
+    .page { display: block; padding: 0; }
+    .download, .ribbon, .subribbon { display: none; }
+    #view-projects { display: none !important; }
+    .portfolio-print { display: block; margin-top: 0.75rem; }
+    .entry-link { display: none; }
+    .entry-link-print { display: block; color: var(--accent); }
+  }
+</style>
+</head>
+<body>
+<nav class="ribbon" aria-label="Main">
+  <div class="ribbon-inner">
+    <button type="button" data-view="home">Home</button>
+    <button type="button" data-view="projects">Projects</button>
+  </div>
+</nav>
+
+<div class="page">
+
+  <header class="side">
+    <h1 class="name">Alexandros Moysi</h1>
+    <p class="greek" lang="el">Αλέξανδρος Σαλβατόρε Μωυσή</p>
+    <p class="role">Computer Science student, University of Cyprus</p>
+    <ul class="contact">
+      <li><span>Email</span><a href="mailto:alessandromoysi@gmail.com">alessandromoysi@gmail.com</a></li>
+      <li><span>Location</span>Larnaca / Nicosia, Cyprus</li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/alexandros-moysi-2512043b9">alexandros-moysi</a></li>
+      <li><span>GitHub</span><a href="https://github.com/AlexMoysi01">AlexMoysi01</a></li>
+    </ul>
+    <a class="download" href="#" onclick="window.print(); return false;">Save as PDF</a>
+  </header>
+
+  <main>
+    <div id="view-home">
+    <section class="profile">
+      <h2>Profile</h2>
+      <p>Third-year Computer Science student at the University of Cyprus with a 9.01/10 GPA. Co-founder and CTO of Argos Robotics, where I work on computer vision and navigation for an autonomous construction-site robot, alongside personal projects in neural networks, optimization, graphics and API design. I always aim for a deep understanding of what I'm working with, not just a working result, and I'm looking to grow these skills, and others beyond them, in a professional setting.</p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <article class="entry">
+        <time>Present</time>
+        <div>
+          <h3>Co-founder and Chief Technology Officer</h3>
+          <p class="org">Argos Robotics</p>
+          <ul>
+            <li>Co-founded a team of three building Loaden, an autonomous assistant that follows workers around construction sites and carries their tools and materials.</li>
+            <li>Developed the computer vision for pathfinding with a depth camera in the Python based MVP.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="entry">
+        <time>Ongoing</time>
+        <div>
+          <h3>Personal &amp; University Projects</h3>
+          <p class="org">Neural networks, optimization, graphics and API design</p>
+          <p><button type="button" class="entry-link" onclick="document.querySelector('.ribbon button[data-view=&quot;projects&quot;]').click()">See the Projects page →</button></p>
+          <p class="entry-link-print">See the Projects page: alexmoysi01.github.io/#projects</p>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <article class="entry">
+        <time>2024 – 2028</time>
+        <div>
+          <h3>Computer Science</h3>
+          <p class="org">University of Cyprus</p>
+          <ul>
+            <li>Current GPA: 9.01 / 10</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Achievements</h2>
+      <article class="entry">
+        <time>2026</time>
+        <div>
+          <h3>JAStartup Cyprus Finalist</h3>
+          <p class="org">With Argos Robotics</p>
+        </div>
+      </article>
+      <article class="entry">
+        <time>2022 – 2023</time>
+        <div>
+          <h3>CCNAv7 certified; first round, Cyprus Informatics Olympiad</h3>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>Programming</dt><dd>C, C++, Java, Python, Rust, SQL</dd>
+        <dt>Tools</dt><dd>Git, OpenGL</dd>
+        <dt>Areas</dt><dd>Computer vision, robotics, optimization, graphics, machine learning</dd>
+        <dt>Languages</dt><dd>Greek (native), English (fluent), German and Swiss German (semi-native)</dd>
+      </dl>
+    </section>
+
+    <p class="aside">Outside of CS: I played double bass in the national youth orchestra, then clarinet in the ΣΜΕΦ military band. I now play clarinet, bass and classical/electric guitar, and perform with a band of friends. I'm also currently learning Japanese.</p>
+    <p class="portfolio-print">Portfolio with project videos: alexmoysi01.github.io</p>
+
+    </div>
+
+    <div id="view-projects" hidden>
+    <section>
+      <h2>Projects</h2>
+      <nav class="subribbon" aria-label="Jump to project">
+        <button type="button" data-target="project-1">Digit Recognition NN</button>
+        <button type="button" data-target="project-2">Loaden</button>
+        <button type="button" data-target="project-3">Mandelbrot Set Explorer</button>
+      </nav>
+
+
+      <!--
+        HOW TO ADD YOUR OWN MEDIA
+        Each button below is one item in the gallery. Fill in:
+          data-type   "video" or "image"
+          data-src    path to the file, e.g. "media/robot/demo.mp4" or "media/robot/photo1.jpg"
+          data-thumb  (optional) small preview image for the thumbnail
+          data-poster (optional, videos) cover image shown before playing
+        Leave data-src empty to show a placeholder.
+      -->
+
+      <article class="project" id="project-1" style="--h: 175">
+        <div class="stage" aria-live="polite"></div>
+        <div class="thumbs" role="group" aria-label="Project media">
+          <button type="button" data-type="video" data-src="neuralnet.mp4" data-thumb="">Visualization</button>
+          <button type="button" data-type="image" data-src="training.png" data-thumb="">Training</button>
+          <button type="button" data-type="image" data-src="binary_format.png" data-thumb="">Custom Binary</button>
+          <button type="button" data-type="image" data-src="fomrulas.png" data-thumb="">Formulas</button>
+          <button type="button" data-type="image" data-src="sketch.png" data-thumb="">Sketch</button>
+        </div>
+        <h3>Digit Recognition NN</h3>
+        <p>Implemented gradient descent for a convolutional neural network (CNN) for handwritten digit recognition from scratch, deriving the formulas by hand and writing the forward and backward pass logic. Built a Java GUI for creating, loading, and saving networks, with a live visualization of the forward pass. Networks are exported through a custom binary file format into a C++ training program, which uses cache-friendly, multithreaded CPU code for performance.</p>
+        <p class="tools">Java, C++, Parallel Processing, Calculus</p>
+      </article>
+
+      <article class="project" id="project-2" style="--h: 195">
+        <div class="stage" aria-live="polite"></div>
+        <div class="thumbs" role="group" aria-label="Project media">
+          <button type="button" data-type="image" data-src="loaden.jpeg" data-thumb="">Loaden</button>
+          <button type="button" data-type="video" data-src="greet_loaden.mp4" data-thumb="">Live Tracking</button>
+          <button type="button" data-type="image" data-src="inner_workings.png" data-thumb="">Simulation</button>
+          <button type="button" data-type="image" data-src="team.jpeg" data-thumb="">The Team</button>
+        </div>
+        <h3>Loaden</h3>
+        <p>An autonomous assistant for construction and renovation sites, built by Argos Robotics. It follows workers and carries tools and materials, and is designed for uneven, stair-heavy sites. Built the depth-camera pathfinding for the Python MVP (shown), implementing a custom VFH+ (Vector Field Histogram+) obstacle-avoidance algorithm. Wrote single-pass computer vision kernels as Numba-compiled functions to minimize memory traffic, learning how memory bandwidth, not arithmetic, often limits performance. The next version, a larger tracked platform, is being rebuilt in Rust.</p>
+        <p class="tools">Python, Numba, Rust, VFH+, computer vision, depth camera, performance optimization</p>
+        <a class="repo" href="https://www.instagram.com/argos_robotics/">Argos Robotics on Instagram</a>
+      </article>
+
+      <article class="project" id="project-3" style="--h: 160">
+        <div class="stage" aria-live="polite"></div>
+        <div class="thumbs" role="group" aria-label="Project media">
+          <button type="button" data-type="video" data-src="clip1.mp4" data-thumb="">Escape Orbits</button>
+          <button type="button" data-type="video" data-src="clip2.mp4" data-thumb="">Lighting Branch</button>
+          <button type="button" data-type="video" data-src="clip3.mp4" data-thumb="">Elephant Valley</button>
+        </div>
+        <h3>Mandelbrot Set Explorer</h3>
+        <p>Interactive Mandelbrot and Julia set renderer built on my custom C++ OpenGL engine, created to drive the engine's development and design its wrapper API abstractions. Renders in selectable modes: 32-bit or 64-bit floating point, on the GPU (GLSL shaders) or on the CPU using multithreaded AVX intrinsics. Built to benchmark CPU double-precision throughput against consumer GPUs, whose FP64 rate is as low as 1/64 of their FP32 rate, making vectorized CPU code competitive at high precision. Renders at 4x supersampled anti-aliasing (SSAA) at native resolution into application subwindows, and applies normal-map-based shading for depth and lighting.</p>
+        <p class="tools">OpenGL, C++, GLSL, AVX/SIMD intrinsics, Multithreading, Git</p>
+      </article>
+    </section>
+
+    </div>
+  </main>
+
+</div>
+
+<script>
+  document.querySelectorAll('.project').forEach(function (project) {
+    var stage = project.querySelector('.stage');
+    var thumbs = project.querySelectorAll('.thumbs button');
+
+    thumbs.forEach(function (b) {
+      if (b.dataset.thumb) {
+        b.style.backgroundImage = 'url("' + b.dataset.thumb + '")';
+        b.textContent = '';
+        b.setAttribute('aria-label', b.dataset.type === 'video' ? 'Video' : 'Picture');
+      }
+    });
+
+    function show(btn) {
+      thumbs.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      stage.innerHTML = '';
+      var src = btn.dataset.src, el;
+      if (!src) {
+        el = document.createElement('div');
+        el.className = 'ph';
+        el.textContent = btn.dataset.type === 'video' ? 'Your video goes here' : 'Your picture goes here';
+      } else if (btn.dataset.type === 'video') {
+        el = document.createElement('video');
+        el.controls = true;
+        el.preload = 'metadata';
+        el.src = src;
+        if (btn.dataset.poster) el.poster = btn.dataset.poster;
+      } else {
+        el = document.createElement('img');
+        el.src = src;
+        el.alt = btn.getAttribute('aria-label') || btn.textContent;
+      }
+      stage.appendChild(el);
+    }
+
+    thumbs.forEach(function (b) { b.addEventListener('click', function () { show(b); }); });
+    show(thumbs[0]);
+  });
+</script>
+<script>
+  (function () {
+    var views = { home: document.getElementById('view-home'), projects: document.getElementById('view-projects') };
+    var ribbonBtns = document.querySelectorAll('.ribbon button');
+    var subBtns = document.querySelectorAll('.subribbon button');
+    var projects = document.querySelectorAll('.project');
+
+    function show(view, targetId) {
+      Object.keys(views).forEach(function (k) { views[k].hidden = (k !== view); });
+      ribbonBtns.forEach(function (b) {
+        if (b.dataset.view === view) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+      });
+      var target = targetId ? document.getElementById(targetId) : null;
+      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+      updateActive();
+    }
+
+    function updateActive() {
+      if (views.projects.hidden) return;
+      var current = null;
+      projects.forEach(function (p) {
+        if (p.getBoundingClientRect().top <= window.innerHeight * 0.4) current = p.id;
+      });
+      subBtns.forEach(function (b) {
+        if (current && b.dataset.target === current) b.setAttribute('aria-current', 'true');
+        else b.removeAttribute('aria-current');
+      });
+    }
+
+    ribbonBtns.forEach(function (b) {
+      b.addEventListener('click', function () { show(b.dataset.view); });
+    });
+    subBtns.forEach(function (b) {
+      b.addEventListener('click', function () { show('projects', b.dataset.target); });
+    });
+    window.addEventListener('scroll', updateActive, { passive: true });
+
+    show(location.hash === '#projects' ? 'projects' : 'home');
+  })();
+</script>
+</body>
+</html>
