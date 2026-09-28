@@ -175,7 +175,6 @@
   .project .repo { font-family: var(--head); font-weight: 500; font-size: 1rem; }
 
   .aside { color: var(--muted); font-size: 1rem; max-width: 34em; margin: -1.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line); }
-  .portfolio-print { display: none; }
 
   .entry-link {
     background: none; border: 0; padding: 0; cursor: pointer;
@@ -200,9 +199,9 @@
     .page { display: block; padding: 0; }
     .download, .ribbon, .subribbon { display: none; }
     #view-projects { display: none !important; }
-    .portfolio-print { display: block; margin-top: 0.75rem; }
     .entry-link { display: none; }
     .entry-link-print { display: block; color: var(--accent); }
+    .entry-link-print a { color: var(--accent); text-decoration: underline; }
   }
 </style>
 </head>
@@ -255,7 +254,7 @@
           <h3>Personal &amp; University Projects</h3>
           <p class="org">Neural networks, optimization, graphics and API design</p>
           <p><button type="button" class="entry-link" onclick="document.querySelector('.ribbon button[data-view=&quot;projects&quot;]').click()">See the Projects page →</button></p>
-          <p class="entry-link-print">See the Projects page: alexmoysi01.github.io/#projects</p>
+          <p class="entry-link-print">See the Projects page: <a href="https://alexmoysi01.github.io/#projects">alexmoysi01.github.io/#projects</a></p>
         </div>
       </article>
     </section>
@@ -302,7 +301,6 @@
     </section>
 
     <p class="aside">Outside of CS: I played double bass in the national youth orchestra, then clarinet in the ΣΜΕΦ military band. I now play clarinet, bass and classical/electric guitar, and perform with a band of friends. I'm also currently learning Japanese.</p>
-    <p class="portfolio-print">Portfolio with project videos: alexmoysi01.github.io</p>
 
     </div>
 
@@ -314,17 +312,6 @@
         <button type="button" data-target="project-2">Loaden</button>
         <button type="button" data-target="project-3">Mandelbrot Set Explorer</button>
       </nav>
-
-
-      <!--
-        HOW TO ADD YOUR OWN MEDIA
-        Each button below is one item in the gallery. Fill in:
-          data-type   "video" or "image"
-          data-src    path to the file, e.g. "media/robot/demo.mp4" or "media/robot/photo1.jpg"
-          data-thumb  (optional) small preview image for the thumbnail
-          data-poster (optional, videos) cover image shown before playing
-        Leave data-src empty to show a placeholder.
-      -->
 
       <article class="project" id="project-1" style="--h: 175">
         <div class="stage" aria-live="polite"></div>
