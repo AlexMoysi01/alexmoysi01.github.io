@@ -69,6 +69,7 @@
     border-radius: 6px;
     text-decoration: none;
   }
+  .download[hidden] { display: none; }
 
   /* Right column */
   section { margin-bottom: 3.25rem; }
@@ -401,12 +402,14 @@
 <script>
   (function () {
     var views = { home: document.getElementById('view-home'), projects: document.getElementById('view-projects') };
+    var download = document.querySelector('.download');
     var ribbonBtns = document.querySelectorAll('.ribbon button');
     var subBtns = document.querySelectorAll('.subribbon button');
     var projects = document.querySelectorAll('.project');
 
     function show(view, targetId) {
       Object.keys(views).forEach(function (k) { views[k].hidden = (k !== view); });
+      download.hidden = (view === 'projects');
       ribbonBtns.forEach(function (b) {
         if (b.dataset.view === view) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
       });
